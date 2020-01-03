@@ -25,12 +25,12 @@ public class InsertionSort {
 	public static JButton button = new JButton();
 	public static JTextField text = new JTextField(20);
 	public static String list;
-	
+
 	public InsertionSort() {
 		UI(); //call basic UI setup
 		Button(); //add button and functionality
 	}
-	
+
 	public void UI() {
 
 		frame.setTitle("Insertion Sort");
@@ -40,21 +40,21 @@ public class InsertionSort {
 
 		Label menu = new Label("Iterations by using Insertion Sort method");
 		text.setSize(100, 100);
-		
-				
+
+
 		System.out.println(list);
 		panel.add(text);
 		panel.add(menu);
-		
+
 		panel.setSize(50, 50);
 		frame.add(panel);
 	}
-	
+
 	public void Button() {
 		button = new JButton();
 		button.setText("Enter");
 		ActionListener listener = new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String input = text.getText();
@@ -66,42 +66,33 @@ public class InsertionSort {
 		panel.add(button);
 
 	}
-	
-	
-	
+
+
+
 	public static void main(String[] args) {
-		
+
 		//new InsertionSort();
-		String test = "12,5,3,7";
+		String test = "1,5,3,7,8,1,2,31,1";
 		int[] array = stringToArray(test);
-		
+
 		for(int i =0 ; i< array.length; i++) {
 			System.out.println(array[i]);
 		}
 
 	}
-	
+
 	public static int[] stringToArray(String input) {
-		int length = input.length();
-		int[] intArray = new int[length];
-		char[] charArray = new char[length];
-		int j = 0;
 		
-		for(int i = 0; i< length; i++ ) { //transforms string to char array
-			charArray[i] = input.charAt(i); 
+		String[] strArray = input.split(",");
+		int[] intArray = new int[strArray.length];
+
+		for(int i = 0; i<strArray.length; i++) {
+			intArray[i] = Integer.parseInt(strArray[i]);
 		}
-		
-		for(int i =0 ; i< charArray.length; i++) {
-			
-			if(charArray[i] == ',') {
-				j++;
-				i++;
-			}
-			intArray[j] = charArray[i];
-			
-		}
+
+
 		return intArray;
-		
+
 	}
 	/**
 	 * Insertion Sort for array of int
