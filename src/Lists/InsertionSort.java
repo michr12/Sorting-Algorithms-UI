@@ -1,18 +1,14 @@
 package Lists;
 
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -24,13 +20,15 @@ public class InsertionSort {
 	public static JPanel display = new JPanel();
 	public static JButton button = new JButton();
 	public static JTextField text = new JTextField(20);
-	public static String list;
 
 	public InsertionSort() {
 		UI(); //call basic UI setup
 		Button(); //add button and functionality
 	}
-
+	
+	/**
+	 * This is used for the initial UI setup
+	 */
 	public void UI() {
 
 		frame.setTitle("Insertion Sort");
@@ -38,23 +36,24 @@ public class InsertionSort {
 		frame.setVisible(true);
 		frame.getContentPane();
 
-		Label menu = new Label("Iterations by using Insertion Sort method");
+		Label menu = new Label("Enter a list using CSV format");
 		text.setSize(100, 100);
 
-
-		System.out.println(list);
-		panel.add(text);
 		panel.add(menu);
-
+		panel.add(text);
 		panel.setSize(50, 50);
+		
 		frame.add(panel);
 	}
-
+	
+	/**
+	 * Set up for the button and response when pressed
+	 */
 	public void Button() {
 		button = new JButton();
-		button.setText("Enter");
+		button.setText("Sort List!");
+		
 		ActionListener listener = new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String input = text.getText();
@@ -62,6 +61,7 @@ public class InsertionSort {
 				insertionSort(arrayInput);
 			}
 		};
+		
 		button.addActionListener(listener);
 		panel.add(button);
 
@@ -71,16 +71,15 @@ public class InsertionSort {
 
 	public static void main(String[] args) {
 
-		//new InsertionSort();
-		String test = "1,5,3,7,8,1,2,31,1";
-		int[] array = stringToArray(test);
-
-		for(int i =0 ; i< array.length; i++) {
-			System.out.println(array[i]);
-		}
-
+		new InsertionSort();
+		
 	}
 
+	/**
+	 * This method takes a string and parse it as an array containing int numbers 
+	 * @param input
+	 * @return
+	 */
 	public static int[] stringToArray(String input) {
 		
 		String[] strArray = input.split(",");
@@ -90,10 +89,10 @@ public class InsertionSort {
 			intArray[i] = Integer.parseInt(strArray[i]);
 		}
 
-
 		return intArray;
 
 	}
+	
 	/**
 	 * Insertion Sort for array of int
 	 * @param array
@@ -135,7 +134,7 @@ public class InsertionSort {
 		label.setBounds(150, 100, size.width, size.height);
 		label.setFont(new Font("Serif", Font.PLAIN, 34));
 		panel.add(label);	
-		s = ""; //retrim the string for next iteration
+		s = ""; //trim the string for next iteration
 
 		return s;
 
